@@ -1,3 +1,16 @@
+/**
+ * TouchwheelSAO_attiny816.ino -- 
+ * 9 Aug 2024 - @todbot / Tod Kurt
+ * 
+ * - Designed for ATtiny816
+ * - Uses "megaTinyCore" Arduino core: https://github.com/SpenceKonde/megaTinyCore/
+ * - Program with "Uplaod with Programmer" with a USB-Serial dongle 
+ *    configured as UPDI programmer ("Tools" / "Programer" / "SerialUPDI - SLOW 57600 baud")
+ #    as described here: 
+ *    https://learn.adafruit.com/adafruit-attiny817-seesaw/advanced-reprogramming-with-updi
+ * 
+ **/
+
 #include <Wire.h>
 #include "TouchyTouch.h"
 
@@ -19,27 +32,30 @@ enum Register {
   REG_RAW2L    = 6,
   REG_RAW2H    = 7,
   REG_LED      = 8,
-  REG_MAXREG   = 9,
+  REG_THRESH0L = 9,
+  REG_THRESH0H = 10,
+  REG_THRESH1L = 11,
+  REG_THRESH1H = 12,
+  REG_THRESH2L = 13,
+  REG_THRESH3H = 14,
   // REG_RAW0     = 2,  // start of all raw values
   // REG_RAW1     = 4,  
   // REG_RAW2     = 6,  
+  REG_MAXREG   = 9,
   REG_NONE     = 255,
 };
 
 uint8_t regs[16]; // the registers to send/receive via i2c
 uint8_t curr_reg = REG_POSITION; 
 
-uint8_t fakepos;
-
-float wheel_pos() { 
+float wheel_pos(float offset=0) { 
   // compute raw percentages
   float a_pct = ((float)touches[0].raw_value - touches[0].threshold) / touches[0].threshold;
   float b_pct = ((float)touches[1].raw_value - touches[1].threshold) / touches[1].threshold;
   float c_pct = ((float)touches[2].raw_value - touches[2].threshold) / touches[2].threshold;
-  //MySerial.printf("\t\t\t%+1.2f  %+1.2f  %+1.2f\n", a_pct, b_pct, c_pct);
 
   //float offset = -0.333/2;  // physical design is rotated 1/2 a sector anti-clockwise
-  float offset = 0; // -0.333/2;  // physical design is rotated 1/2 a sector anti-clockwise
+  //float offset = 0; // -0.333/2;  // physical design is rotated 1/2 a sector anti-clockwise
 
   float pos = -1;
   //cases when finger is touching two pads
@@ -142,6 +158,6 @@ void transmitDataWire() {
   uint8_t c = regs[curr_reg];
   //MySerial.printf("send: %02x\r\n", c);
   Wire.write(c);
-  //curr_reg++;
+  curr_reg++;  // FIXME: test this
 }
 
