@@ -388,175 +388,6 @@
 				)
 			)
 		)
-		(symbol "Device:LED"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "LED"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Light emitting diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "LED diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "LED_0_1"
-				(polyline
-					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "LED_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:R"
 			(pin_numbers hide)
 			(pin_names
@@ -1511,6 +1342,159 @@
 				)
 			)
 		)
+		(symbol "todbot_stuff:SK6805-EC3210R"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "LED"
+				(at 0 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SK6805-EC3210R"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "todbot_stuff:LED-SMD_4P-L3.2-W1.5_SK6805-EC3210R"
+				(at 0 -8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC Part" "C5378735"
+				(at 0 -11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SK6805-EC3210R_0_1"
+				(rectangle
+					(start -7.62 3.81)
+					(end 7.62 -3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -6.35 2.54)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -10.16 1.27 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -10.16 -1.27 0)
+					(length 2.54)
+					(name "DOUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 10.16 -1.27 180)
+					(length 2.54)
+					(name "DIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 10.16 1.27 180)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "todbot_stuff:Simple_Addon_v2"
 			(pin_names
 				(offset 1.016)
@@ -1707,12 +1691,12 @@
 		(uuid "202fc9c8-fc49-4e12-8aa5-817c4fa926e6")
 	)
 	(no_connect
-		(at 177.8 63.5)
-		(uuid "914ed2c4-7d16-4391-bb29-07a18352ca84")
+		(at 175.26 88.9)
+		(uuid "46c665de-0ddd-4096-b330-9c81e526cdfd")
 	)
 	(no_connect
-		(at 135.89 88.9)
-		(uuid "9d8e6538-76e9-47ff-abbb-7adcd3c60c5c")
+		(at 177.8 63.5)
+		(uuid "914ed2c4-7d16-4391-bb29-07a18352ca84")
 	)
 	(no_connect
 		(at 177.8 78.74)
@@ -1743,6 +1727,16 @@
 			(type default)
 		)
 		(uuid "0374a018-39ec-4d4b-9545-e424d39ccfa7")
+	)
+	(wire
+		(pts
+			(xy 143.51 134.62) (xy 146.05 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05e0012b-378e-416a-93ab-f9a1e82163c9")
 	)
 	(wire
 		(pts
@@ -1806,16 +1800,6 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 88.9) (xy 184.15 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3539d5ee-3fe6-435c-ab28-83c0ed2b345a")
-	)
-	(wire
-		(pts
 			(xy 166.37 63.5) (xy 177.8 63.5)
 		)
 		(stroke
@@ -1833,6 +1817,16 @@
 			(type default)
 		)
 		(uuid "39c623c3-94fa-4753-8994-85b0b75b4f98")
+	)
+	(wire
+		(pts
+			(xy 125.73 88.9) (xy 135.89 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c2dc394-1aa9-499c-a87c-354355b04ce7")
 	)
 	(wire
 		(pts
@@ -1916,6 +1910,26 @@
 	)
 	(wire
 		(pts
+			(xy 166.37 137.16) (xy 175.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6fb50a75-de89-40fd-a03b-3e4314caa11d")
+	)
+	(wire
+		(pts
+			(xy 111.76 134.62) (xy 114.3 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7275166f-2609-4c62-93b2-c8ff68b69f50")
+	)
+	(wire
+		(pts
 			(xy 191.77 33.02) (xy 191.77 30.48)
 		)
 		(stroke
@@ -1923,6 +1937,16 @@
 			(type default)
 		)
 		(uuid "80b4ad78-c6a8-4781-9fb9-4c67949d1d66")
+	)
+	(wire
+		(pts
+			(xy 166.37 88.9) (xy 175.26 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8384680f-2189-442b-899f-4509d2b839c8")
 	)
 	(wire
 		(pts
@@ -2026,16 +2050,6 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 88.9) (xy 184.15 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba900fd4-40f7-406b-99bb-4faa0093b658")
-	)
-	(wire
-		(pts
 			(xy 93.98 59.69) (xy 93.98 52.07)
 		)
 		(stroke
@@ -2043,6 +2057,16 @@
 			(type default)
 		)
 		(uuid "c0da79fe-5300-463a-8cb1-12261de3da3b")
+	)
+	(wire
+		(pts
+			(xy 172.72 134.62) (xy 175.26 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5329e04-66e0-4167-ad4d-96da2425c70b")
 	)
 	(wire
 		(pts
@@ -2096,6 +2120,16 @@
 	)
 	(wire
 		(pts
+			(xy 134.62 137.16) (xy 146.05 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da33ba6a-39c3-4f43-88ca-c286d5b82065")
+	)
+	(wire
+		(pts
 			(xy 166.37 91.44) (xy 175.26 91.44)
 		)
 		(stroke
@@ -2113,6 +2147,16 @@
 			(type default)
 		)
 		(uuid "e7464dc2-0cf0-4243-8ce2-4adc957d257d")
+	)
+	(wire
+		(pts
+			(xy 101.6 137.16) (xy 114.3 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e834fed2-7ead-451e-ad89-62e780639c35")
 	)
 	(wire
 		(pts
@@ -2264,6 +2308,17 @@
 		)
 		(uuid "68000d53-410d-4b3b-9d73-6e51b2ee1b3d")
 	)
+	(label "LED_DAT"
+		(at 101.6 137.16 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6bd5d4f8-f292-464d-83bf-dca978e40b62")
+	)
 	(label "PC1"
 		(at 100.33 90.17 0)
 		(fields_autoplaced yes)
@@ -2373,6 +2428,17 @@
 			(justify left bottom)
 		)
 		(uuid "ef12151f-c539-49b4-bca9-d5cea6c19531")
+	)
+	(label "LED_DAT"
+		(at 125.73 88.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "fced9bb8-4dd9-4712-b169-4af3c630f436")
 	)
 	(symbol
 		(lib_id "power:VCC")
@@ -2516,35 +2582,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 184.15 101.6 0)
+		(lib_id "power:GND")
+		(at 134.62 134.62 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "23743ef1-30c5-4fd8-b5c8-26b4bea94c19")
-		(property "Reference" "R8"
-			(at 186.69 100.3299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1k"
-			(at 186.69 102.8699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 182.372 101.6 90)
+		(uuid "16f44fb6-8b2d-44ea-bef3-6a1a8beeae5c")
+		(property "Reference" "#PWR017"
+			(at 140.97 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2552,8 +2599,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 184.15 101.6 0)
+		(property "Value" "GND"
+			(at 137.922 132.588 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 134.62 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2561,8 +2616,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor"
-			(at 184.15 101.6 0)
+		(property "Datasheet" ""
+			(at 134.62 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2570,16 +2625,22 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "e00f394d-d974-40ff-9cc3-699e98b96bb5")
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 134.62 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
 		)
 		(pin "1"
-			(uuid "a34a38da-f356-460a-a13e-9d8f4aa6f5ac")
+			(uuid "1e21ed8e-b5c8-415e-b191-03d5d102b05f")
 		)
 		(instances
-			(project "captouchsao"
+			(project "TouchwheelSAO"
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
-					(reference "R8")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -2646,6 +2707,155 @@
 			(project "captouchsao"
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
 					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 143.51 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2f8dd94f-1dec-4d6b-a5c5-1b1d407e5b14")
+		(property "Reference" "#PWR022"
+			(at 143.51 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VCC"
+			(at 145.288 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 143.51 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 143.51 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 143.51 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e9485616-f4bc-4b0c-b958-436b62a664fb")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "#PWR022")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "todbot_stuff:SK6805-EC3210R")
+		(at 156.21 135.89 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "38653a73-92bb-4cd5-883c-6ecc9d63c0d4")
+		(property "Reference" "LED2"
+			(at 156.21 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6805-EC3210R"
+			(at 156.21 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "todbot_stuff:LED-SMD_4P-L3.2-W1.5_SK6805-EC3210R"
+			(at 156.21 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 156.21 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 156.21 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C5378735"
+			(at 156.21 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "4b6c37de-68f0-4621-8782-0e68deb59fa3")
+		)
+		(pin "1"
+			(uuid "fae10013-c5a2-4b74-b4b4-5ad7efe59586")
+		)
+		(pin "4"
+			(uuid "7442d373-29d8-469b-af96-c6007fe43477")
+		)
+		(pin "3"
+			(uuid "936fb992-26e7-445c-9ff8-7f3e2d46c244")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "LED2")
 					(unit 1)
 				)
 			)
@@ -2856,12 +3066,12 @@
 	(symbol
 		(lib_id "todbot_eagle2023:TouchRotary")
 		(at 254 77.47 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "4bd4f550-f0bc-4680-a03c-d1f2716777c1")
 		(property "Reference" "TOUCH1"
 			(at 260.35 77.47 0)
@@ -2873,7 +3083,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 246.38 87.63 0)
+			(at 246.38 67.31 0)
 			(effects
 				(font
 					(size 1.778 1.5113)
@@ -2883,7 +3093,7 @@
 			)
 		)
 		(property "Footprint" "todbot_eagle2023:TOUCHROTARY1B"
-			(at 253.746 74.168 0)
+			(at 253.746 80.772 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2922,6 +3132,137 @@
 			(project ""
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
 					(reference "TOUCH1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 172.72 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4c780c62-9fbc-4c10-9500-c91192250aa1")
+		(property "Reference" "#PWR023"
+			(at 172.72 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VCC"
+			(at 174.498 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 172.72 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 172.72 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 172.72 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a7516b2c-b2c7-4d6a-9063-97a4d277ae00")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 166.37 134.62 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4f1c8d7c-c0ef-42cb-a4bd-1879e7381aaf")
+		(property "Reference" "#PWR018"
+			(at 172.72 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 169.164 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 166.37 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 166.37 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 166.37 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a40fbf57-26e5-443b-972e-462b132991c7")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -2994,76 +3335,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 184.15 109.22 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "58e5d755-ecce-4381-bdc9-c7c3860e332b")
-		(property "Reference" "D1"
-			(at 187.96 109.5374 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED"
-			(at 187.96 112.0774 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
-			(at 184.15 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 184.15 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 184.15 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "584e13b2-ebb6-4cfb-8781-187ae84db047")
-		)
-		(pin "2"
-			(uuid "a6456b2c-d9bf-431d-ac89-9566509b2416")
-		)
-		(instances
-			(project ""
-				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
-					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VCC")
 		(at 88.9 59.69 0)
 		(unit 1)
@@ -3124,6 +3395,72 @@
 			(project "captouchsao"
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 111.76 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61814d4c-5a3c-4f51-9e2b-25bc2331290d")
+		(property "Reference" "#PWR021"
+			(at 111.76 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VCC"
+			(at 113.538 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 111.76 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 111.76 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 111.76 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3b941aee-cc64-47b3-bccd-bafeab1c6501")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -3464,6 +3801,89 @@
 		)
 	)
 	(symbol
+		(lib_id "todbot_stuff:SK6805-EC3210R")
+		(at 185.42 135.89 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "756addec-62f2-488a-9ee4-85a93b2140e5")
+		(property "Reference" "LED3"
+			(at 185.42 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK6805-EC3210R"
+			(at 185.42 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "todbot_stuff:LED-SMD_4P-L3.2-W1.5_SK6805-EC3210R"
+			(at 185.42 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 185.42 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 185.42 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part" "C5378735"
+			(at 185.42 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "728264a7-902c-4f35-94be-66f0249ed81d")
+		)
+		(pin "1"
+			(uuid "b2f5dd24-61e5-4269-ae74-cdf7fd8efb8f")
+		)
+		(pin "4"
+			(uuid "b4d4ba8a-2b33-48d0-bb8f-f7a8a6356ab4")
+		)
+		(pin "3"
+			(uuid "c4f21cb6-3930-445d-821c-de1faf28e2a6")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "LED3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 220.98 92.71 0)
 		(unit 1)
@@ -3603,7 +4023,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "890142ae-30f4-469b-8617-fe134cca2d56")
 		(property "Reference" "#PWR011"
 			(at 151.13 107.95 0)
@@ -3615,7 +4034,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 151.13 106.68 0)
+			(at 153.67 104.394 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3728,34 +4147,33 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 184.15 113.03 0)
+		(lib_id "todbot_stuff:SK6805-EC3210R")
+		(at 124.46 135.89 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9ab4ec18-4540-4163-8566-6fb015b25962")
-		(property "Reference" "#PWR016"
-			(at 184.15 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 184.15 118.11 0)
+		(uuid "97716a3e-a074-4c24-b454-fc0792342c85")
+		(property "Reference" "LED1"
+			(at 124.46 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 184.15 113.03 0)
+		(property "Value" "SK6805-EC3210R"
+			(at 124.46 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "todbot_stuff:LED-SMD_4P-L3.2-W1.5_SK6805-EC3210R"
+			(at 124.46 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3764,7 +4182,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 184.15 113.03 0)
+			(at 124.46 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3772,22 +4190,40 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 184.15 113.03 0)
+		(property "Description" ""
+			(at 124.46 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
+		)
+		(property "LCSC Part" "C5378735"
+			(at 124.46 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c4bda2de-e13b-42e4-b71a-d04bc8990824")
 		)
 		(pin "1"
-			(uuid "252a1515-4956-40dc-9499-56886ad0f1ad")
+			(uuid "86bd9027-d173-46c3-af88-0000e2b4c095")
+		)
+		(pin "4"
+			(uuid "44b1d0a9-ab81-476e-8315-a22bdbb3a54a")
+		)
+		(pin "3"
+			(uuid "8e014bcc-1511-4d8f-8dc1-4a7bb338532b")
 		)
 		(instances
-			(project "captouchsao"
+			(project ""
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
-					(reference "#PWR016")
+					(reference "LED1")
 					(unit 1)
 				)
 			)
@@ -4619,6 +5055,71 @@
 			(project "captouchsao"
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
 					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 195.58 134.62 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e079d50b-9dd5-4ff3-bfa8-6e44f4e24f42")
+		(property "Reference" "#PWR019"
+			(at 201.93 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 198.374 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 195.58 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 195.58 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ab3a411f-5153-4836-9384-a405ddb787f5")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
