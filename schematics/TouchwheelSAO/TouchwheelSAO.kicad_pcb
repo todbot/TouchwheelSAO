@@ -4270,7 +4270,7 @@
 		(path "/4bd4f550-f0bc-4680-a03c-d1f2716777c1")
 		(sheetname "Root")
 		(sheetfile "TouchwheelSAO.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 16 1)
 			(end 6 1)
@@ -5220,8 +5220,8 @@
 		(uuid "fdb48d40-2d0b-4bfe-9d79-76826d4ae28d")
 	)
 	(gr_circle
-		(center 200 99.8)
-		(end 205.5 99.8)
+		(center 200 100)
+		(end 205.5 100)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -5231,8 +5231,8 @@
 		(uuid "23fa660f-716b-4ebf-a27a-786c1b0c946e")
 	)
 	(gr_circle
-		(center 200 99.8)
-		(end 205.5 99.8)
+		(center 200 100)
+		(end 205.5 100)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -8396,72 +8396,6 @@
 			(pts
 				(xy 197.4 94.6) (xy 195.4 96.2) (xy 194.4 97.8) (xy 194 100) (xy 200 100) (xy 206 100) (xy 205.8 98.4)
 				(xy 205 96.8) (xy 203.8 95.4) (xy 202.2 94.4) (xy 200 94)
-			)
-		)
-	)
-	(zone
-		(net 0)
-		(net_name "")
-		(layer "B.Mask")
-		(uuid "9ed9f382-8d27-483d-adc2-62838e4988af")
-		(name "keepled2")
-		(hatch edge 0.5)
-		(connect_pads
-			(clearance 0)
-		)
-		(min_thickness 0.25)
-		(filled_areas_thickness no)
-		(fill yes
-			(thermal_gap 0.5)
-			(thermal_bridge_width 0.5)
-		)
-		(polygon
-			(pts
-				(xy 201.2 94.6) (xy 201.232941 97.451765) (xy 204.2 96.4) (xy 202.832941 95.451765)
-			)
-		)
-		(filled_polygon
-			(layer "B.Mask")
-			(island)
-			(pts
-				(xy 201.383732 94.695837) (xy 202.826021 95.448155) (xy 202.839347 95.456208) (xy 204.001169 96.262084)
-				(xy 204.045035 96.316468) (xy 204.052536 96.385933) (xy 204.02129 96.448427) (xy 203.971926 96.480847)
-				(xy 201.39636 97.393835) (xy 201.326596 97.39768) (xy 201.265828 97.363198) (xy 201.233349 97.301336)
-				(xy 201.230938 97.278393) (xy 201.202393 94.807211) (xy 201.221302 94.739949) (xy 201.273574 94.693587)
-				(xy 201.342613 94.682845)
-			)
-		)
-	)
-	(zone
-		(net 0)
-		(net_name "")
-		(layer "F.Mask")
-		(uuid "a129f4a7-1ea8-42e4-8993-ecdc82c5fe6c")
-		(name "keepled2")
-		(hatch edge 0.5)
-		(connect_pads
-			(clearance 0)
-		)
-		(min_thickness 0.25)
-		(filled_areas_thickness no)
-		(fill yes
-			(thermal_gap 0.5)
-			(thermal_bridge_width 0.5)
-		)
-		(polygon
-			(pts
-				(xy 200.992423 94.810923) (xy 201.025364 97.662688) (xy 203.992423 96.610923) (xy 202.625364 95.662688)
-			)
-		)
-		(filled_polygon
-			(layer "F.Mask")
-			(island)
-			(pts
-				(xy 201.176155 94.90676) (xy 202.618444 95.659078) (xy 202.63177 95.667131) (xy 203.793592 96.473007)
-				(xy 203.837458 96.527391) (xy 203.844959 96.596856) (xy 203.813713 96.65935) (xy 203.764349 96.69177)
-				(xy 201.188783 97.604758) (xy 201.119019 97.608603) (xy 201.058251 97.574121) (xy 201.025772 97.512259)
-				(xy 201.023361 97.489316) (xy 200.994816 95.018134) (xy 201.013725 94.950872) (xy 201.065997 94.90451)
-				(xy 201.135036 94.893768)
 			)
 		)
 	)
