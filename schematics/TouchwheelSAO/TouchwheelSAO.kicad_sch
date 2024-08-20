@@ -1860,12 +1860,16 @@
 		(uuid "202fc9c8-fc49-4e12-8aa5-817c4fa926e6")
 	)
 	(no_connect
-		(at 175.26 88.9)
-		(uuid "46c665de-0ddd-4096-b330-9c81e526cdfd")
-	)
-	(no_connect
 		(at 175.26 96.52)
 		(uuid "4d670b1a-e8aa-4ba9-9a83-576bf077d25d")
+	)
+	(no_connect
+		(at 125.73 83.82)
+		(uuid "8594fee6-f4e0-426f-ad63-cf3f215e9af5")
+	)
+	(no_connect
+		(at 125.73 86.36)
+		(uuid "8f526097-150a-46b9-9554-e84547bc06c2")
 	)
 	(no_connect
 		(at 177.8 63.5)
@@ -1876,12 +1880,12 @@
 		(uuid "b245c118-f608-4285-816b-6121b263171f")
 	)
 	(no_connect
-		(at 177.8 68.58)
-		(uuid "cdf33e11-442b-437d-8bcc-b048ee4a3e98")
+		(at 195.58 137.16)
+		(uuid "bf3fdf10-bb54-4114-8602-4cfc921df1af")
 	)
 	(no_connect
-		(at 175.26 91.44)
-		(uuid "fb0e1c65-e48f-46db-8162-201e9f2e366e")
+		(at 177.8 68.58)
+		(uuid "cdf33e11-442b-437d-8bcc-b048ee4a3e98")
 	)
 	(wire
 		(pts
@@ -1942,6 +1946,16 @@
 			(type default)
 		)
 		(uuid "1271bc49-9b41-4d49-a409-86bafd01f034")
+	)
+	(wire
+		(pts
+			(xy 106.68 137.16) (xy 114.3 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19ae54a0-d564-45e2-bdfb-777cf99f884f")
 	)
 	(wire
 		(pts
@@ -2325,7 +2339,7 @@
 	)
 	(wire
 		(pts
-			(xy 101.6 137.16) (xy 114.3 137.16)
+			(xy 81.28 137.16) (xy 99.06 137.16)
 		)
 		(stroke
 			(width 0)
@@ -2362,6 +2376,17 @@
 			)
 		)
 		(uuid "38402ea8-2030-459e-b44e-e20e099feb29")
+	)
+	(text "UART debug \non SAO GP1,2"
+		(exclude_from_sim no)
+		(at 104.14 64.008 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+			)
+			(justify left top)
+		)
+		(uuid "5d32ebc6-be06-4318-ba38-8bfd63a06447")
 	)
 	(text "USB-Serial to UPDI\n-------------\nTX\nRX\nV+\nGnd\n"
 		(exclude_from_sim no)
@@ -2517,7 +2542,7 @@
 		(uuid "685fdce3-af7e-4915-9c55-7e501b08ca11")
 	)
 	(label "LED_DAT"
-		(at 101.6 137.16 0)
+		(at 81.28 137.16 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3484,7 +3509,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "1k"
 			(at 186.69 101.5999 0)
 			(effects
 				(font
@@ -4705,6 +4730,74 @@
 			(project "captouchsao"
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
 					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 102.87 137.16 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b407b4b6-59d8-44f3-a619-b62a6010e6fc")
+		(property "Reference" "R9"
+			(at 102.87 130.81 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 102.87 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 102.87 138.938 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 102.87 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 102.87 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7a10878f-2985-4543-8ce5-fd14b964a0e3")
+		)
+		(pin "1"
+			(uuid "fd409085-5c7b-4939-b767-9c9a9089b4e4")
+		)
+		(instances
+			(project "TouchwheelSAO"
+				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
+					(reference "R9")
 					(unit 1)
 				)
 			)
