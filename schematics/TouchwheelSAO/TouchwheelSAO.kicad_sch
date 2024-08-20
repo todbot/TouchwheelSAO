@@ -2733,11 +2733,11 @@
 		(at 219.71 35.56 180)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "13c941a9-7982-4ed2-8654-d7fb8eeaca7f")
-		(property "Reference" "J3"
+		(property "Reference" "J2"
 			(at 214.884 23.114 0)
 			(effects
 				(font
@@ -2797,7 +2797,7 @@
 		(instances
 			(project ""
 				(path "/598c645d-45d3-4f84-85f8-bbbc5b47d1f0"
-					(reference "J3")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -3291,7 +3291,7 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "4bd4f550-f0bc-4680-a03c-d1f2716777c1")
@@ -3509,7 +3509,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "470"
 			(at 186.69 101.5999 0)
 			(effects
 				(font
