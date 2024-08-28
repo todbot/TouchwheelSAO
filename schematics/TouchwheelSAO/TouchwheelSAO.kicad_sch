@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "TouchwheelSAO")
-		(date "2024-08-09")
+		(date "2024-08-28")
 		(company "todbot  / Tod Kurt")
 	)
 	(lib_symbols
