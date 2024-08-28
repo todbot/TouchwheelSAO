@@ -5982,7 +5982,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "TouchwheelSAO\n16 Aug 2024 - @todbot\ngithub.com/todbot/TouchWheelSAO"
+	(gr_text "TouchwheelSAO\n28 Aug 2024 - @todbot\ngithub.com/todbot/TouchWheelSAO"
 		(at 208.2 76 270)
 		(layer "F.SilkS")
 		(uuid "6004d729-f48b-46a7-9010-33c0f774deac")
