@@ -2,6 +2,7 @@
 # 5 Aug 2024 - @todbot / Tod Kurt
 #
 
+
 import time, board, busio
 from adafruit_bus_device import i2c_device
 
@@ -37,8 +38,9 @@ while True:
     i2c_scan(i2c)
     try:
         print("%.2f write reg:" % time.monotonic())
-        i2c_write_register(i2cdev, 8, led_state)
+        i2c_write_register(i2cdev, 14, led_state)
         led_state = not led_state
+        #i2c_write_register(i2cdev, 17, 100)  # set RGB B 
         print("reading...:")
         r = i2c_read_register_bytes(i2cdev, 0, 1)
         print("  pos:", r, r[0])
@@ -48,8 +50,12 @@ while True:
         print("  raw0L:", r, r[0])
         r = i2c_read_register_bytes(i2cdev, 3, 1) # RAW0H
         print("  raw0H:", r, r[0])
+        r = i2c_read_register_bytes(i2cdev, 8, 1) # THRESH0L
+        print("  thresh0L:", r, r[0])
         
     except OSError as e:
         print(e)
     time.sleep(1)
-    
+
+
+
