@@ -2755,7 +2755,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "SparkFun-Connector:1x04_Solder_Pads"
+		(property "Footprint" "Connector_Harwin:Harwin_M20-89004xx_1x04_P2.54mm_Horizontal"
 			(at 219.71 35.56 0)
 			(effects
 				(font
@@ -5444,7 +5444,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "1k"
 			(at 195.58 26.67 90)
 			(effects
 				(font
