@@ -17,13 +17,16 @@
 
 #include <Wire.h>
 #include "TouchyTouch.h"
-#include <tinyNeoPixel_Static.h>  
-//#include "Adafruit_seesawPeripheral_tinyneopixel.h"
+// #include <tinyNeoPixel_Static.h>  
+#include "Adafruit_seesawPeripheral_tinyneopixel.h"
 // using seesaw's neopixel driver instead of megatinycore's tinyneopixel 
 //  because it saves 500 bytes of flash
 // but seems to glitch out, so going back to tinyNeoPixel_Static for now
 
 #define MY_I2C_ADDR 0x54
+#define FPOS_FILT (0.05)
+#define TOUCH_THRESHOLD_ADJ (1.2)
+
 // note these pin numbers are the megatinycore numbers: 
 // https://github.com/SpenceKonde/megaTinyCore/blob/master/megaavr/variants/txy6/pins_arduino.h
 #define LED_STATUS_PIN  5 // PB4
@@ -31,8 +34,6 @@
 #define MySerial Serial
 #define NUM_LEDS (5)
 #define LED_UPDATE_MILLIS (2)
-#define FPOS_FILT (0.05)
-#define TOUCH_THRESHOLD_ADJ (1.2)
 
 enum Register { 
   REG_POSITION = 0,   // angular position 1-255 of touch, or 0 if no touch
@@ -61,9 +62,6 @@ const int touch_pins[] = {0, 1, 2, };
 const int touch_count = sizeof(touch_pins) / sizeof(int);
 TouchyTouch touches[touch_count];
 
-volatile uint8_t led_buf[NUM_LEDS*3]; // 3 bytes per LED
-tinyNeoPixel leds = tinyNeoPixel(NUM_LEDS, NEOPIXEL_PIN, NEO_GRB, (uint8_t*) led_buf);
-
 uint8_t regs[REG_NUMREGS]; // the registers to send/receive via i2c
 uint8_t curr_reg = REG_POSITION; 
 
@@ -72,25 +70,30 @@ uint8_t curr_reg = REG_POSITION;
 #define ledg (regs[REG_LED_RGBG])
 #define ledb (regs[REG_LED_RGBB])
 
+volatile uint8_t led_buf[NUM_LEDS*3]; // 3 bytes per LED
+
 // when using tinyNeoPixel_Static
-#define pixel_set(n,r,g,b) leds.setPixelColor(n, leds.Color(r,g,b))
-#define pixel_fill(r,g,b) leds.fill(leds.Color(r,g,b))
-#define pixel_show() leds.show()
+// tinyNeoPixel leds = tinyNeoPixel(NUM_LEDS, NEOPIXEL_PIN, NEO_GRB, (uint8_t*) led_buf);
+// #define pixel_set(n,r,g,b) leds.setPixelColor(n, leds.Color(r,g,b))
+// #define pixel_fill(r,g,b) leds.fill(leds.Color(r,g,b))
+// #define pixel_show() leds.show()
 
 // when using adafruit_seesawperipheral_tinyneopixel
-// void pixel_set(uint8_t n, uint8_t r, uint8_t g, uint8_t b) {
-//   led_buf[n*3+0] = g; // G
-//   led_buf[n*3+1] = r; // R 
-//   led_buf[n*3+2] = b; // B
-// }
-// void pixel_fill(uint8_t r, uint8_t g, uint8_t b) { 
-//   for(int i=0; i<NUM_LEDS; i++) { 
-//     pixel_set(i, r,g,b);
-//   }
-// }
-// void pixel_show() {
-//   tinyNeoPixel_show(NEOPIXEL_PIN, NUM_LEDS*3, (uint8_t *)led_buf);
-// }
+void pixel_set(uint8_t n, uint8_t r, uint8_t g, uint8_t b) {
+  led_buf[n*3+0] = g; // G
+  led_buf[n*3+1] = r; // R 
+  led_buf[n*3+2] = b; // B
+}
+void pixel_fill(uint8_t r, uint8_t g, uint8_t b) { 
+  for(int i=0; i<NUM_LEDS; i++) { 
+    pixel_set(i, r,g,b);
+  }
+}
+void pixel_show() {
+  noInterrupts();
+  tinyNeoPixel_show(NEOPIXEL_PIN, NUM_LEDS*3, (uint8_t *)led_buf);
+  interrupts();
+}
 
 
 // originally from https://github.com/todbot/touchwheels/blob/main/arduino/touchwheel0_test0/touchwheel0_test0.ino
@@ -186,19 +189,19 @@ void loop() {
 
   // set the I2C registers
   regs[REG_POSITION] = pos;  // FIXME
-  regs[REG_TOUCHES] = touched;  // touches[0].touched() << 2 | touches[1].touched() << 1 | touches[2].touched();
-  regs[REG_RAW0L] = touches[0].raw_value;  // high and low byte
+  regs[REG_TOUCHES] = touched;
+  regs[REG_RAW0L] = touches[0].raw_value;     // high and low byte
   regs[REG_RAW0H] = touches[0].raw_value>>8;  // high and low byte
-  regs[REG_RAW1L] = touches[1].raw_value;  // high and low byte
-  regs[REG_RAW1H] = touches[1].raw_value>>8;  // high and low byte
-  regs[REG_RAW2L] = touches[2].raw_value;  // high and low byte
-  regs[REG_RAW2H] = touches[2].raw_value>>8;  // high and low byte
-  regs[REG_THRESH0L] = touches[0].threshold;  // high and low byte
+  regs[REG_RAW1L] = touches[1].raw_value;
+  regs[REG_RAW1H] = touches[1].raw_value>>8;
+  regs[REG_RAW2L] = touches[2].raw_value;
+  regs[REG_RAW2H] = touches[2].raw_value>>8;
+  regs[REG_THRESH0L] = touches[0].threshold;     // high and low byte
   regs[REG_THRESH0H] = touches[0].threshold>>8;  // high and low byte
-  regs[REG_THRESH1L] = touches[1].threshold;  // high and low byte
-  regs[REG_THRESH1H] = touches[1].threshold>>8;  // high and low byte
-  regs[REG_THRESH1L] = touches[2].threshold;  // high and low byte
-  regs[REG_THRESH1H] = touches[2].threshold>>8;  // high and low byte
+  regs[REG_THRESH1L] = touches[1].threshold;
+  regs[REG_THRESH1H] = touches[1].threshold>>8;
+  regs[REG_THRESH2L] = touches[2].threshold;
+  regs[REG_THRESH2H] = touches[2].threshold>>8;
 
   // act on I2C output registers
   digitalWrite(LED_STATUS_PIN, regs[REG_LED_STATUS] > 0 ? HIGH : LOW);
@@ -229,8 +232,9 @@ void loop() {
     if( touched ) { 
       touch_timer = 255;
       //ledr = 50, ledg = 50, ledb = 50;  // turn right dim white
-      //Wheel(pos, &ledr, &ledg, &ledb);
+
       uint32_t c = Wheel(pos);
+      // sigh
       ledr = (c>>16) & 0xff; 
       ledg = (c>>8) & 0xff; 
       ledb = (c>>0) & 0xff; 
@@ -284,18 +288,22 @@ void transmitDataWire() {
   curr_reg++;  // FIXME: test this
 }
 
+static uint32_t pack_color(uint8_t r, uint8_t g, uint8_t b) {
+  return ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b;
+}
+  
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
 uint32_t Wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
   if (WheelPos < 85) {
-    return leds.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+    return pack_color(255 - WheelPos * 3, 0, WheelPos * 3);
   }
   if (WheelPos < 170) {
     WheelPos -= 85;
-    return leds.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+    return pack_color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
   WheelPos -= 170;
-  return leds.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+  return pack_color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
