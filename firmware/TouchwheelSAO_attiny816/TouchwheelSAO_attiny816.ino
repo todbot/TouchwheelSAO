@@ -22,6 +22,7 @@
 // using seesaw's neopixel driver instead of megatinycore's tinyneopixel 
 //  because it saves 500 bytes of flash
 // but seems to glitch out, so going back to tinyNeoPixel_Static for now
+// update: ahh seems like tinyNeoPixel_Static calls `noInterrupts()` so we'll mirror that
 
 #define MY_I2C_ADDR 0x54
 #define FPOS_FILT (0.05)
@@ -145,11 +146,18 @@ void setup() {
   pinMode(NEOPIXEL_PIN, OUTPUT);
 
   // do a little fade up to indicate we're alive
-  for( int i=0; i<100; i++) { 
+  for(byte i=0; i<100; i++) { 
     ledr = i, ledg = i, ledb = i;
     pixel_fill(ledr, ledg, ledb);
     pixel_show();
     delay(10);
+  }
+  for(byte i=0; i<255; i++) { 
+    uint32_t c = wheel(i);
+    uint8_t r = (c>>16) & 0xff, g = (c>>8) & 0xff, b = c&0xff;
+    pixel_fill(r,g,b);
+    pixel_show();
+    delay(5);
   }
       
  // Touch buttons
@@ -165,7 +173,7 @@ void setup() {
 
 uint32_t last_debug_time;
 uint32_t last_led_time;
-uint8_t pos = 0;
+int pos = 0;
 uint8_t touch_timer = 255;
 
 // main loop
@@ -178,10 +186,13 @@ void loop() {
 
   // simple iir filtering on touch inputs
   float fpos = wheel_pos();
-  const float filt = FPOS_FILT; // 0.05;
-  if(fpos > -1) {  // fpos ranges 0-1, -1 == no touch
+  const float filt = FPOS_FILT;
+  if(touched) {  // fpos ranges 0-1, -1 == no touch
     fpos = (fpos * 255);
-    pos = filt * fpos + (1-filt) * pos;
+    //pos = filt * fpos + (1-filt) * pos;
+    pos = fpos;
+    touch_timer = min(touch_timer+10, 255);
+    if( pos < 10 ) { pos = 1; } // hack
   }
   else { 
     pos = 0;
@@ -230,24 +241,12 @@ void loop() {
 
     // if touched, light up
     if( touched ) { 
-      touch_timer = 255;
-      //ledr = 50, ledg = 50, ledb = 50;  // turn right dim white
-
-      uint32_t c = Wheel(pos);
-      // sigh
-      ledr = (c>>16) & 0xff; 
-      ledg = (c>>8) & 0xff; 
-      ledb = (c>>0) & 0xff; 
-
-     // if( pos < 85 ) {
-      //   pixel_set(1, 100+pos, 100+pos, ledb);
-      // }
-      // else if( pos < 170 ) {
-      //   pixel_set(2, 100+(pos-85), 100+(pos-85), ledb);
-      // }
-      // else {
-      //   pixel_set(0, 100+(pos-170), 100+(pos-85), ledb);
-      // }
+      //touch_timer = 255;
+      uint32_t c = wheel(pos);
+      // sigh, unpack: fixme: change wheel to take r,g,b ptrs
+      ledr = (c>>16) & 0xff;
+      ledg = (c>>8) & 0xff;
+      ledb = (c>>0) & 0xff;
     }
     pixel_show();
   }
@@ -256,7 +255,7 @@ void loop() {
   if( now - last_debug_time > 50 ) { 
     last_debug_time = now;
     // leds_fill( )
-    MySerial.printf("pos: %d\r\n", pos);
+    MySerial.printf("pos: %d %d\r\n", pos, touch_timer);
   }
 
   //  delay(1);
@@ -294,7 +293,7 @@ static uint32_t pack_color(uint8_t r, uint8_t g, uint8_t b) {
   
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
-uint32_t Wheel(byte WheelPos) {
+uint32_t wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
   if (WheelPos < 85) {
     return pack_color(255 - WheelPos * 3, 0, WheelPos * 3);
