@@ -25,16 +25,17 @@
 // update: ahh seems like tinyNeoPixel_Static calls `noInterrupts()` so we'll mirror that
 
 #define MY_I2C_ADDR 0x54
-#define FPOS_FILT (0.05)
+#define LED_BRIGHTNESS  80     // range 0-255
+#define LED_UPDATE_MILLIS (2)
 #define TOUCH_THRESHOLD_ADJ (1.2)
+#define FPOS_FILT (0.05)
 
 // note these pin numbers are the megatinycore numbers: 
 // https://github.com/SpenceKonde/megaTinyCore/blob/master/megaavr/variants/txy6/pins_arduino.h
 #define LED_STATUS_PIN  5 // PB4
 #define NEOPIXEL_PIN 12  // PC2
 #define MySerial Serial
-#define NUM_LEDS (5)
-#define LED_UPDATE_MILLIS (2)
+#define NUM_LEDS (3)
 
 enum Register { 
   REG_POSITION = 0,   // angular position 1-255 of touch, or 0 if no touch
@@ -81,9 +82,9 @@ volatile uint8_t led_buf[NUM_LEDS*3]; // 3 bytes per LED
 
 // when using adafruit_seesawperipheral_tinyneopixel
 void pixel_set(uint8_t n, uint8_t r, uint8_t g, uint8_t b) {
-  led_buf[n*3+0] = g; // G
-  led_buf[n*3+1] = r; // R 
-  led_buf[n*3+2] = b; // B
+  led_buf[n*3+0] = (uint16_t)(g * LED_BRIGHTNESS) / 256; // G
+  led_buf[n*3+1] = (uint16_t)(r * LED_BRIGHTNESS) / 256; // R 
+  led_buf[n*3+2] = (uint16_t)(b * LED_BRIGHTNESS) / 256; // B
 }
 void pixel_fill(uint8_t r, uint8_t g, uint8_t b) { 
   for(int i=0; i<NUM_LEDS; i++) { 
@@ -152,12 +153,16 @@ void setup() {
     pixel_show();
     delay(10);
   }
+  
   for(byte i=0; i<255; i++) { 
-    uint32_t c = wheel(i);
-    uint8_t r = (c>>16) & 0xff, g = (c>>8) & 0xff, b = c&0xff;
-    pixel_fill(r,g,b);
+    for(byte n=0; n<3; n++) { 
+      uint32_t c = wheel(i + n*50);
+      uint8_t r = (c>>16) & 0xff, g = (c>>8) & 0xff, b = c&0xff;
+      //r /= 2; g /= 2; b /= 2;  // dim a bit
+      pixel_set(n, r,g,b);
+    }
     pixel_show();
-    delay(5);
+    delay(10);
   }
       
  // Touch buttons
@@ -186,13 +191,13 @@ void loop() {
 
   // simple iir filtering on touch inputs
   float fpos = wheel_pos();
-  const float filt = FPOS_FILT;
+  // const float filt = FPOS_FILT;
   if(touched) {  // fpos ranges 0-1, -1 == no touch
     fpos = (fpos * 255);
     //pos = filt * fpos + (1-filt) * pos;
     pos = fpos;
     touch_timer = min(touch_timer+10, 255);
-    if( pos < 10 ) { pos = 1; } // hack
+    if( pos < 1 ) { pos = 1; } // hack
   }
   else { 
     pos = 0;
