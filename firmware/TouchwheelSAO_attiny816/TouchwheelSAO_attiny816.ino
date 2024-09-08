@@ -99,45 +99,47 @@ void pixel_show() {
 
 
 // originally from https://github.com/todbot/touchwheels/blob/main/arduino/touchwheel0_test0/touchwheel0_test0.ino
-float wheel_pos(float offset=0) { 
-  // compute raw percentages
-  float a_pct = ((float)touches[0].raw_value - touches[0].threshold) / touches[0].threshold;
-  float b_pct = ((float)touches[1].raw_value - touches[1].threshold) / touches[1].threshold;
-  float c_pct = ((float)touches[2].raw_value - touches[2].threshold) / touches[2].threshold;
+// but this is the int, no float, version
+//
+// return 0-255 touch position on wheel, or -1 if not touched
+//
+int wheel_pos() {
+  // 0-255 "percentage" of touch per pad
+  // int a_pct = (((int)touches[0].raw_value - touches[0].threshold) * 255) / touches[0].threshold;
+  // int b_pct = (((int)touches[1].raw_value - touches[1].threshold) * 255) / touches[1].threshold;
+  // int c_pct = (((int)touches[2].raw_value - touches[2].threshold) * 255) / touches[2].threshold;
+  int a_pct = ((touches[0].raw_value - touches[0].threshold) * 255);
+  int b_pct = ((touches[1].raw_value - touches[1].threshold) * 255);
+  int c_pct = ((touches[2].raw_value - touches[2].threshold) * 255);
+  a_pct /= (int)(touches[0].threshold);  // can't get the compiler to keep this signed when one-line
+  b_pct /= (int)(touches[1].threshold);  // so we split it up
+  c_pct /= (int)(touches[2].threshold); 
 
-  //float offset = -0.333/2;  // physical design is rotated 1/2 a sector anti-clockwise
-  //float offset = 0; // -0.333/2;  // physical design is rotated 1/2 a sector anti-clockwise
-
-  float pos = -1;
-  //cases when finger is touching two pads
-  if( a_pct >= 0 and b_pct >= 0 ) {
-      pos = 0 + 0.333 * (b_pct / (a_pct + b_pct));
-  } 
+  int pos = -1;
+  if( a_pct >= 0 and b_pct >= 0 ) { 
+    pos = 0*85 + 85 * b_pct / (a_pct + b_pct);
+  }
   else if( b_pct >= 0 and c_pct >= 0 ) {
-      pos = 0.333 + 0.333 * (c_pct / (b_pct + c_pct));
+    pos = 1*85 + 85 * c_pct / (b_pct + c_pct);
   }
   else if( c_pct >= 0 and a_pct >= 0 ) { 
-      pos = 0.666 + 0.333 * (a_pct / (c_pct + a_pct));
+    pos = 2*85 + 85 * a_pct / (c_pct + a_pct);
   }
   // special cases when finger is just on a single pad.
   // these shouldn't be needed and create "deadzones" at these points
   // so surely there's a better solution
-  else if( a_pct > 0 and b_pct <= 0 and c_pct <= 0 ) { 
-      pos = 0;
+  else if( a_pct > 0 and b_pct <= 0 and c_pct <= 0 ) {  // just "a"
+    pos = 0*85;
   }
-  else if( a_pct <= 0 and b_pct > 0 and c_pct <= 0 ) { 
-      pos = 0.333;
+  else if( a_pct <= 0 and b_pct > 0 and c_pct <= 0 ) {  // just "b"
+    pos = 1*85;
   }
-  else if( a_pct <= 0 and b_pct <= 0 and c_pct > 0 ) {
-      pos = 0.666;
+  else if( a_pct <= 0 and b_pct <= 0 and c_pct > 0 ) {  // just "c"
+    pos = 2*85;
   }
-  if( pos == -1 ) { // no touch 
-    return -1;
-  }
-  // wrap pos around the 0-1 circle if offset puts it outside that range
-  return fmod(pos + offset, 1);
-}
 
+  return pos;  
+}
 
 void setup() {
   MySerial.begin(115200);
@@ -190,14 +192,10 @@ void loop() {
   uint8_t touched = touches[0].touched() << 2 | touches[1].touched() << 1 | touches[2].touched();
 
   // simple iir filtering on touch inputs
-  float fpos = wheel_pos();
-  // const float filt = FPOS_FILT;
+  pos = wheel_pos();
   if(touched) {  // fpos ranges 0-1, -1 == no touch
-    fpos = (fpos * 255);
-    //pos = filt * fpos + (1-filt) * pos;
-    pos = fpos;
     touch_timer = min(touch_timer+10, 255);
-    if( pos < 1 ) { pos = 1; } // hack
+    if( pos < 1 ) { pos = 1; }  // hack
   }
   else { 
     pos = 0;
