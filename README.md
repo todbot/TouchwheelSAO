@@ -6,6 +6,11 @@ Capacitive touchweel SAO, related to [touchwheel0](https://github.com/todbot/tou
 * [View BOM](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/bom/ibom.html)
 * [View SCH PDF](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/TouchwheelSAO_sch.pdf)
 
+Prototype Demo: 
+
+
+https://github.com/user-attachments/assets/b0e4c4f9-f228-49bc-8d6e-ceb53a960fb6
+
 
 
 Render2:
