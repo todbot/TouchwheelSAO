@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 0.0,
+          "height": 1.0,
+          "width": 1.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -58,12 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "silk_edge_clearance|178590026|94800000|6a880cdf-7a99-48ac-86fa-ab9b1cf8bf4e|d70759d4-4355-45f3-9830-dad0654fce20",
-        "silk_edge_clearance|178723700|105200000|6a880cdf-7a99-48ac-86fa-ab9b1cf8bf4e|486c3c80-a319-4eb8-9900-55ca7a0cc411",
-        "silk_overlap|171605000|104190000|fefa40a6-3a91-4a16-be10-45916f2c015f|696c7076-0d7e-4f61-a8b5-5ab120743eeb",
-        "silk_overlap|177605000|104190000|fefa40a6-3a91-4a16-be10-45916f2c015f|bfed5026-1ae9-4e95-baa8-2129fd50491b"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -515,7 +510,7 @@
       "specctra_dsn": "",
       "step": "TouchwheelSAO.step",
       "svg": "",
-      "vrml": ""
+      "vrml": "TouchwheelSAO.wrl"
     },
     "page_layout_descr_file": ""
   },
