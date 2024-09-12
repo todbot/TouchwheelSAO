@@ -64,6 +64,12 @@ const int touch_pins[] = {0, 1, 2, };
 const int touch_count = sizeof(touch_pins) / sizeof(int);
 TouchyTouch touches[touch_count];
 
+uint32_t last_debug_time;
+uint32_t last_led_time;
+int pos = 0;
+uint8_t touch_timer = 255;
+uint8_t held_timer = 0;
+
 uint8_t regs[REG_NUMREGS]; // the registers to send/receive via i2c
 uint8_t curr_reg = REG_POSITION; 
 
@@ -178,10 +184,6 @@ void setup() {
   Wire.begin(MY_I2C_ADDR);
 }
 
-uint32_t last_debug_time;
-uint32_t last_led_time;
-int pos = 0;
-uint8_t touch_timer = 255;
 
 // main loop
 void loop() {
@@ -192,9 +194,14 @@ void loop() {
   uint8_t touched = touches[0].touched() << 2 | touches[1].touched() << 1 | touches[2].touched();
 
   // simple iir filtering on touch inputs
+  // (not implemented yet)
   pos = wheel_pos();
-  if(touched) {  // fpos ranges 0-1, -1 == no touch
+  if(touched) {
     touch_timer = min(touch_timer+10, 255);
+
+    if( touch_timer > 10 ) { // held
+      held_timer = min(held_timer+10, 255);
+    }
     if( pos < 1 ) { pos = 1; }  // hack
   }
   else { 
@@ -257,7 +264,6 @@ void loop() {
   // debug
   if( now - last_debug_time > 50 ) { 
     last_debug_time = now;
-    // leds_fill( )
     MySerial.printf("pos: %d %d\r\n", pos, touch_timer);
   }
 
