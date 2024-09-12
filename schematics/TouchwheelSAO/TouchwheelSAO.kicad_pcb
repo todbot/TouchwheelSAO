@@ -1117,7 +1117,7 @@
 		(descr "SOIC, 20 Pin (JEDEC MS-013AC, https://www.analog.com/media/en/package-pcb-resources/package/233848rw_20.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOIC SO")
 		(property "Reference" "U1"
-			(at -0.7 -7.8 360)
+			(at -0.7 -7.8 0)
 			(layer "F.SilkS")
 			(uuid "5303d122-0567-4aef-8f5b-3b87c0f7fb76")
 			(effects
@@ -4088,7 +4088,7 @@
 		(path "/13c941a9-7982-4ed2-8654-d7fb8eeaca7f")
 		(sheetname "Root")
 		(sheetfile "TouchwheelSAO.kicad_sch")
-		(attr smd exclude_from_bom)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_line
 			(start 6.895 4.25)
 			(end 0.895 4.25)
