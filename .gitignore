@@ -27,6 +27,7 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+*.ipc
 
 # tod temp files
 schematics/TouchwheelSAO/*jpg
