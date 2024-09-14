@@ -58,14 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "silk_edge_clearance|178590026|94800000|6a880cdf-7a99-48ac-86fa-ab9b1cf8bf4e|d70759d4-4355-45f3-9830-dad0654fce20",
-        "silk_edge_clearance|178723700|105200000|6a880cdf-7a99-48ac-86fa-ab9b1cf8bf4e|486c3c80-a319-4eb8-9900-55ca7a0cc411",
-        "silk_overlap|171605000|104190000|fefa40a6-3a91-4a16-be10-45916f2c015f|696c7076-0d7e-4f61-a8b5-5ab120743eeb",
-        "silk_overlap|177605000|104190000|fefa40a6-3a91-4a16-be10-45916f2c015f|bfed5026-1ae9-4e95-baa8-2129fd50491b",
-        "solder_mask_bridge|187234712|121173395|3f1858aa-e0a5-4dbe-a5ac-d84eb0a1cc23|e4960331-6806-4396-8c2b-5fd922360b5c",
-        "solder_mask_bridge|208773400|76565294|804fe2a1-0b51-4403-99d2-90168c6589a2|e4960331-6806-4396-8c2b-5fd922360b5c"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },

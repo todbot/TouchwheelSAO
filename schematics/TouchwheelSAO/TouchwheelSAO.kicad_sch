@@ -3354,6 +3354,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC Part" "C2054204"
+			(at 151.13 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "19"
 			(uuid "789af412-c690-400a-9768-13298e581978")
 		)
