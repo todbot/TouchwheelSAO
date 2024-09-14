@@ -5,7 +5,7 @@ Capacitive touchweel SAO for Hackaday Supercon 2024
 
 * [View BOM](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/bom/ibom.html)
 * [View SCH PDF](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/TouchwheelSAO_sch.pdf)
-* [Production files (Gerbers, etc)](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/production/)
+* Production files: [gerbers zip](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/production/TouchWheelSAO.zip), [bom csv](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/production/bom.csv), [positions csv](https://todbot.github.io/TouchwheelSAO/schematics/TouchwheelSAO/production/positions.csv)
 
 ### Renders:
 
