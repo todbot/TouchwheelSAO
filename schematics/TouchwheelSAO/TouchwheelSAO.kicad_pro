@@ -58,7 +58,11 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "lib_footprint_mismatch|182027500|100000000|db117cee-737c-4e38-9bae-adc6dc6d8dea|00000000-0000-0000-0000-000000000000",
+        "solder_mask_bridge|207882362|77471632|804fe2a1-0b51-4403-99d2-90168c6589a2|e4960331-6806-4396-8c2b-5fd922360b5c",
+        "text_thickness|209200000|77200000|6004d729-f48b-46a7-9010-33c0f774deac|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
