@@ -38,6 +38,6 @@ https://github.com/user-attachments/assets/c628ba94-1a07-43ad-b761-b3852f8f35f7
 * Related to [touchwheel0](https://github.com/todbot/touchwheels)
 * Uses ATtiny816, using [megaTinyCore](https://github.com/SpenceKonde/megaTinyCore) for Arduino
 * 9Sep2024: Originally designed for QFN, but SOIC requested. ATtiny816 comes in hilariously wide SOIC
-* 16Sep2024: Back to QFN for ATtiny816 for JLC assembly. Renders are out of date
+* 16Sep2024: Back to QFN for ATtiny816 for JLC assembly.
 * 16Sep2024: SAO header must be hand switched to be same side ("top") as SMD in positions.csv for JLC to assemble it correctly
 
