@@ -5570,17 +5570,6 @@
 	)
 	(gr_circle
 		(center 200 100)
-		(end 217 100)
-		(stroke
-			(width 0.3)
-			(type default)
-		)
-		(fill none)
-		(layer "B.SilkS")
-		(uuid "f8ed9bd2-4edd-46ec-a769-3b1ee6a61e12")
-	)
-	(gr_circle
-		(center 200 100)
 		(end 205.5 100)
 		(stroke
 			(width 0.1)

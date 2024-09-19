@@ -46,7 +46,7 @@ arduino-cli board details -b megaTinyCore:megaavr:atxy6
 ### Compile:
 
 ```sh
-arduino-cli compile --verbose -fqbn megaTinyCore:megaavr:atxy6:chip=816,printf=minimal \
+arduino-cli compile --verbose --fqbn megaTinyCore:megaavr:atxy6:chip=816,printf=minimal \
             --build-path=$(pwd)/build TouchwheelSAO_attiny816
 ```
 
