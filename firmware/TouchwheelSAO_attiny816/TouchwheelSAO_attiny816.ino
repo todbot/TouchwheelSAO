@@ -69,6 +69,7 @@ uint32_t last_led_time;
 int pos = 0;
 uint8_t touch_timer = 255;
 uint8_t held_timer = 0;
+bool do_startup_demo = true;
 
 uint8_t regs[REG_NUMREGS]; // the registers to send/receive via i2c
 uint8_t curr_reg = REG_POSITION; 
@@ -147,13 +148,7 @@ int wheel_pos() {
   return pos;  
 }
 
-void setup() {
-  MySerial.begin(115200);
-  MySerial.println("\r\nHello I'm an I2C device");
-
-  pinMode(LED_STATUS_PIN, OUTPUT);
-  pinMode(NEOPIXEL_PIN, OUTPUT);
-
+void startup_demo() {
   // do a little fade up to indicate we're alive
   for(byte i=0; i<100; i++) { 
     ledr = i, ledg = i, ledb = i;
@@ -161,7 +156,6 @@ void setup() {
     pixel_show();
     delay(10);
   }
-  
   for(byte i=0; i<255; i++) { 
     for(byte n=0; n<3; n++) { 
       uint32_t c = wheel(i + n*50);
@@ -172,21 +166,34 @@ void setup() {
     pixel_show();
     delay(10);
   }
-      
+}
+
+void setup() {
+  MySerial.begin(115200);
+  MySerial.println("\r\nHello I'm an I2C device");
+  
+  pinMode(LED_STATUS_PIN, OUTPUT);
+  pinMode(NEOPIXEL_PIN, OUTPUT);
+    
+  Wire.onReceive(receiveDataWire);
+  Wire.onRequest(transmitDataWire);
+  Wire.begin(MY_I2C_ADDR);
+
  // Touch buttons
   for (int i = 0; i < touch_count; i++) {
     touches[i].begin( touch_pins[i] );
     touches[i].threshold = touches[i].raw_value * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
   }
-  
-  Wire.onReceive(receiveDataWire);
-  Wire.onRequest(transmitDataWire);
-  Wire.begin(MY_I2C_ADDR);
-}
 
+}
 
 // main loop
 void loop() {
+  if(do_startup_demo) { 
+    startup_demo();
+    do_startup_demo = false;
+  }
+
   // update touch inputs
   for ( int i = 0; i < touch_count; i++) {
     touches[i].update(); 
