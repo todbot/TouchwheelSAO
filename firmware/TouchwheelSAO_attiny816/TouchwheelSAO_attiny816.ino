@@ -179,7 +179,7 @@ void setup() {
   Wire.onRequest(transmitDataWire);
   Wire.begin(MY_I2C_ADDR);
 
- // Touch buttons
+  // Touch buttons
   for (int i = 0; i < touch_count; i++) {
     touches[i].begin( touch_pins[i] );
     touches[i].threshold = touches[i].raw_value * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
@@ -191,6 +191,10 @@ void setup() {
 void loop() {
   if(do_startup_demo) { 
     startup_demo();
+    // recalibrate in case pads were being touched on power up (or power not stable)
+    for( int i=0; i< touch_count; i++) { 
+      touches[i].threshold = touches[i].raw_value * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
+    }
     do_startup_demo = false;
   }
 
