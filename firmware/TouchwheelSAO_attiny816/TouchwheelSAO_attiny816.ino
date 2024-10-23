@@ -27,7 +27,7 @@
 #define MY_I2C_ADDR 0x54
 #define LED_BRIGHTNESS  80     // range 0-255
 #define LED_UPDATE_MILLIS (2)
-#define TOUCH_THRESHOLD_ADJ (1.2)
+#define TOUCH_THRESHOLD_ADJ (1.1)
 #define FPOS_FILT (0.05)
 
 // note these pin numbers are the megatinycore numbers: 
@@ -154,7 +154,7 @@ void startup_demo() {
     ledr = i, ledg = i, ledb = i;
     pixel_fill(ledr, ledg, ledb);
     pixel_show();
-    delay(10);
+    delay(5);
   }
   for(byte i=0; i<255; i++) { 
     for(byte n=0; n<3; n++) { 
@@ -164,7 +164,7 @@ void startup_demo() {
       pixel_set(n, r,g,b);
     }
     pixel_show();
-    delay(10);
+    delay(5);
   }
 }
 
@@ -184,7 +184,14 @@ void setup() {
     touches[i].begin( touch_pins[i] );
     touches[i].threshold = touches[i].raw_value * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
   }
+  //touch_recalibrate();
+}
 
+void touch_recalibrate() {
+    for( int i=0; i< touch_count; i++) { 
+      uint16_t v = touches[i].recalibrate();
+      touches[i].threshold = v * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
+    }
 }
 
 // main loop
@@ -192,9 +199,7 @@ void loop() {
   if(do_startup_demo) { 
     startup_demo();
     // recalibrate in case pads were being touched on power up (or power not stable)
-    for( int i=0; i< touch_count; i++) { 
-      touches[i].threshold = touches[i].raw_value * TOUCH_THRESHOLD_ADJ; // auto threshold doesn't work
-    }
+    //touch_recalibrate();
     do_startup_demo = false;
   }
 

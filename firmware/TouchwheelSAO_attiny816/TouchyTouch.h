@@ -38,14 +38,16 @@ class TouchyTouch
 
   /*!
      @brief Recalibrate threshold value, called automatically on begin().
+     Returns an optional smoothed raw_value to use for hand recalibration
   */
-  void recalibrate() {
+  uint16_t recalibrate() {
     const int num_reads = 5;
     for(int i=0; i<num_reads; i++) {
       raw_value += rawRead();
     }
     raw_value /= num_reads;
     threshold = (raw_value * 1.05) + 100;
+    return raw_value;
   }
 
   /*!
