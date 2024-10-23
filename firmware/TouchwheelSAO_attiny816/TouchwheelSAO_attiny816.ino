@@ -27,7 +27,7 @@
 #define MY_I2C_ADDR 0x54
 #define LED_BRIGHTNESS  80     // range 0-255
 #define LED_UPDATE_MILLIS (2)
-#define TOUCH_THRESHOLD_ADJ (1.1)
+#define TOUCH_THRESHOLD_ADJ (1.2)
 #define FPOS_FILT (0.05)
 
 // note these pin numbers are the megatinycore numbers: 
@@ -199,7 +199,7 @@ void loop() {
   if(do_startup_demo) { 
     startup_demo();
     // recalibrate in case pads were being touched on power up (or power not stable)
-    //touch_recalibrate();
+    touch_recalibrate();
     do_startup_demo = false;
   }
 
