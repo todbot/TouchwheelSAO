@@ -42,6 +42,7 @@ class TouchyTouch
   */
   uint16_t recalibrate() {
     const int num_reads = 5;
+    raw_value = 0;
     for(int i=0; i<num_reads; i++) {
       raw_value += rawRead();
     }
