@@ -122,13 +122,16 @@ class TouchyTouch
       digitalWrite(pin, HIGH);
       delayMicroseconds(CHARGE_MICROS);
       // set pad back to an input and take some samples
+      noInterrupts();
       pinMode(pin, INPUT);
       while ( digitalRead(pin) ) {
         if (ticks >= TIMEOUT_TICKS) {
+          interrupts();
           return TIMEOUT_TICKS;
         }
         ticks++;
       }
+      interrupts();
     }
     return ticks;
   }
