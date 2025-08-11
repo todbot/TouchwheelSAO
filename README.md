@@ -28,6 +28,14 @@ Capacitive touchweel SAO for Hackaday Supercon 2024
 <a href="./docs/renders/TouchwheelSAO-render4.jpg"><img src="./docs/renders/TouchwheelSAO-render4.jpg" width=400></a>
 <a href="./docs/renders/TouchwheelSAO-render5.jpg"><img src="./docs/renders/TouchwheelSAO-render5.jpg" width=400></a>
 
+### Production version (cat approved):
+
+
+
+https://github.com/user-attachments/assets/31f27016-510a-4a7b-9d95-70a69f371cc3
+
+
+
 ### Prototype Demo: 
 
 
