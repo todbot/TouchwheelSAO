@@ -21,12 +21,12 @@ Capacitive touchweel SAO for Hackaday Supercon 2024
 
 ### Renders:
 
-<a href="./docs/renders/TouchwheelSAO-render0.jpg"><img src="./docs/renders/TouchwheelSAO-render0.jpg" width=400></a>
-<a href="./docs/renders/TouchwheelSAO-render1.jpg"><img src="./docs/renders/TouchwheelSAO-render1.jpg" width=400></a>
-<a href="./docs/renders/TouchwheelSAO-render2.jpg"><img src="./docs/renders/TouchwheelSAO-render2.jpg" width=400></a>
-<a href="./docs/renders/TouchwheelSAO-render3.jpg"><img src="./docs/renders/TouchwheelSAO-render3.jpg" width=400></a>
-<a href="./docs/renders/TouchwheelSAO-render4.jpg"><img src="./docs/renders/TouchwheelSAO-render4.jpg" width=400></a>
-<a href="./docs/renders/TouchwheelSAO-render5.jpg"><img src="./docs/renders/TouchwheelSAO-render5.jpg" width=400></a>
+<a href="./docs/renders/TouchwheelSAO-render0.jpg"><img src="./docs/renders/TouchwheelSAO-render0.jpg" width=350></a>
+<a href="./docs/renders/TouchwheelSAO-render1.jpg"><img src="./docs/renders/TouchwheelSAO-render1.jpg" width=350></a>
+<a href="./docs/renders/TouchwheelSAO-render2.jpg"><img src="./docs/renders/TouchwheelSAO-render2.jpg" width=350></a>
+<a href="./docs/renders/TouchwheelSAO-render3.jpg"><img src="./docs/renders/TouchwheelSAO-render3.jpg" width=350></a>
+<a href="./docs/renders/TouchwheelSAO-render4.jpg"><img src="./docs/renders/TouchwheelSAO-render4.jpg" width=350></a>
+<a href="./docs/renders/TouchwheelSAO-render5.jpg"><img src="./docs/renders/TouchwheelSAO-render5.jpg" width=350></a>
 
 ### Production version (cat approved):
 
