@@ -25,6 +25,7 @@
 // update: ahh seems like tinyNeoPixel_Static calls `noInterrupts()` so we'll mirror that
 
 #define MY_I2C_ADDR 0x54
+#define FW_VERSION  2          // 1 = original fw, w/o per-LED regs or REG_VERSION
 #define LED_BRIGHTNESS  80     // range 0-255
 #define LED_UPDATE_MILLIS (2)
 #define TOUCH_THRESHOLD_ADJ (1.2)
@@ -53,10 +54,20 @@ enum Register {
   REG_THRESH2L = 12,
   REG_THRESH2H = 13,
   REG_LED_STATUS = 14, // boolean to set status LED
-  REG_LED_RGBR = 15,   // LED ring color R
-  REG_LED_RGBG = 16,   // LED ring color G
-  REG_LED_RGBB = 17,   // LED ring color B 
-  REG_NUMREGS  = 18,
+  REG_LED_RGBR = 15,   // LED ring color R, writing sets R of all LEDs
+  REG_LED_RGBG = 16,   // LED ring color G, writing sets G of all LEDs
+  REG_LED_RGBB = 17,   // LED ring color B, writing sets B of all LEDs
+  REG_LED0_R   = 18,   // per-LED colors, LED0 R,G,B
+  REG_LED0_G   = 19,
+  REG_LED0_B   = 20,
+  REG_LED1_R   = 21,   // LED1 R,G,B
+  REG_LED1_G   = 22,
+  REG_LED1_B   = 23,
+  REG_LED2_R   = 24,   // LED2 R,G,B
+  REG_LED2_G   = 25,
+  REG_LED2_B   = 26,
+  REG_VERSION  = 27,   // FW_VERSION, read-only
+  REG_NUMREGS  = 28,
   REG_NONE     = 255,
 };
 
@@ -78,6 +89,18 @@ uint8_t curr_reg = REG_POSITION;
 #define ledr (regs[REG_LED_RGBR])
 #define ledg (regs[REG_LED_RGBG])
 #define ledb (regs[REG_LED_RGBB])
+
+// the R,G,B registers of LED n
+#define led_regs(n) (&regs[REG_LED0_R + (n)*3])
+
+// set the fill-all color regs and every per-LED color reg
+void fill_led_regs(uint8_t r, uint8_t g, uint8_t b) {
+  ledr = r, ledg = g, ledb = b;
+  for(uint8_t n=0; n<NUM_LEDS; n++) {
+    uint8_t *c = led_regs(n);
+    c[0] = r, c[1] = g, c[2] = b;
+  }
+}
 
 volatile uint8_t led_buf[NUM_LEDS*3]; // 3 bytes per LED
 
@@ -150,8 +173,8 @@ int wheel_pos() {
 
 void startup_demo() {
   // do a little fade up to indicate we're alive
-  for(byte i=0; i<100; i++) { 
-    ledr = i, ledg = i, ledb = i;
+  for(byte i=0; i<100; i++) {
+    fill_led_regs(i, i, i);
     pixel_fill(ledr, ledg, ledb);
     pixel_show();
     delay(5);
@@ -239,6 +262,7 @@ void loop() {
   regs[REG_THRESH1H] = touches[1].threshold>>8;
   regs[REG_THRESH2L] = touches[2].threshold;
   regs[REG_THRESH2H] = touches[2].threshold>>8;
+  regs[REG_VERSION] = FW_VERSION;
 
   // act on I2C output registers
   digitalWrite(LED_STATUS_PIN, regs[REG_LED_STATUS] > 0 ? HIGH : LOW);
@@ -248,31 +272,26 @@ void loop() {
   if( now - last_led_time > LED_UPDATE_MILLIS ) { // only update neopixels every N msec
     last_led_time = now;
     // if touched recently, fade down LEDs
-    if( touch_timer ) { 
+    if( touch_timer ) {
       touch_timer = max(touch_timer-1, 0);
-      // fade down background LED
-      ledr = max(ledr - 1, 0);
-      ledg = max(ledg - 1, 0);
-      ledb = max(ledb - 1, 0);
-    }
-    // only allow I2C setting of RGB LEDs if not recently touched
-    else { 
-      ledr = regs[REG_LED_RGBR];
-      ledg = regs[REG_LED_RGBG];
-      ledb = regs[REG_LED_RGBB];
+      // fade down background LEDs, fill-all and per-LED regs alike
+      for(uint8_t i=REG_LED_RGBR; i<=REG_LED2_B; i++) {
+        if( regs[i] ) { regs[i]--; }
+      }
     }
 
     // set background (or set commanded LEDs)
-    pixel_fill(ledr,ledg,ledb);
+    for(uint8_t n=0; n<NUM_LEDS; n++) {
+      uint8_t *c = led_regs(n);
+      pixel_set(n, c[0], c[1], c[2]);
+    }
 
     // if touched, light up
-    if( touched ) { 
+    if( touched ) {
       //touch_timer = 255;
       uint32_t c = wheel(pos);
       // sigh, unpack: fixme: change wheel to take r,g,b ptrs
-      ledr = (c>>16) & 0xff;
-      ledg = (c>>8) & 0xff;
-      ledb = (c>>0) & 0xff;
+      fill_led_regs((c>>16) & 0xff, (c>>8) & 0xff, (c>>0) & 0xff);
     }
     pixel_show();
   }
@@ -295,18 +314,25 @@ void receiveDataWire(int16_t numBytes) {      // the Wire API tells us how many 
     MySerial.printf("bad reg addr: %d\r\n", curr_reg);
   }
   else { 
-    for (uint8_t i = 0; i < numBytes-1; i++) { 
+    for (uint8_t i = 0; i < numBytes-1; i++) {
       uint8_t c = Wire.read();
+      if( curr_reg >= REG_NUMREGS ) { continue; }  // drop bytes past the end
         MySerial.printf("writing regs[%d] = %02x\r\n", curr_reg, c);
         regs[curr_reg] = c;
+        // fill-all color regs set that channel of every LED, as in FW_VERSION 1
+        if( curr_reg >= REG_LED_RGBR && curr_reg <= REG_LED_RGBB ) {
+          for(uint8_t n=0; n<NUM_LEDS; n++) {
+            led_regs(n)[curr_reg - REG_LED_RGBR] = c;
+          }
+        }
         curr_reg++;
     }
   }
-} 
+}
 
-// send I2C 
+// send I2C
 void transmitDataWire() {
-  uint8_t c = regs[curr_reg];
+  uint8_t c = curr_reg < REG_NUMREGS ? regs[curr_reg] : 0;
   //MySerial.printf("send: %02x\r\n", c);
   Wire.write(c);
   curr_reg++;  // FIXME: test this
