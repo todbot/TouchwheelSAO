@@ -198,6 +198,8 @@ void setup() {
   pinMode(LED_STATUS_PIN, OUTPUT);
   pinMode(NEOPIXEL_PIN, OUTPUT);
     
+  // hosts may read this during the startup demo, before loop() runs
+  regs[REG_VERSION] = FW_VERSION;
   Wire.onReceive(receiveDataWire);
   Wire.onRequest(transmitDataWire);
   Wire.begin(MY_I2C_ADDR);
@@ -309,24 +311,18 @@ void loop() {
 // receive I2C
 void receiveDataWire(int16_t numBytes) {      // the Wire API tells us how many bytes
   curr_reg = Wire.read();                  // first byte is address to read from / write to
-  MySerial.printf("recv: reg:%02x ", curr_reg);
-  if( curr_reg >= REG_NUMREGS ) { 
-    MySerial.printf("bad reg addr: %d\r\n", curr_reg);
-  }
-  else { 
-    for (uint8_t i = 0; i < numBytes-1; i++) {
-      uint8_t c = Wire.read();
-      if( curr_reg >= REG_NUMREGS ) { continue; }  // drop bytes past the end
-        MySerial.printf("writing regs[%d] = %02x\r\n", curr_reg, c);
-        regs[curr_reg] = c;
-        // fill-all color regs set that channel of every LED, as in FW_VERSION 1
-        if( curr_reg >= REG_LED_RGBR && curr_reg <= REG_LED_RGBB ) {
-          for(uint8_t n=0; n<NUM_LEDS; n++) {
-            led_regs(n)[curr_reg - REG_LED_RGBR] = c;
-          }
-        }
-        curr_reg++;
+  // no printing here: in the ISR it stalls the bus ~17ms per write
+  for (uint8_t i = 0; i < numBytes-1; i++) {
+    uint8_t c = Wire.read();
+    if( curr_reg >= REG_NUMREGS ) { continue; }  // drop bytes past the end
+    regs[curr_reg] = c;
+    // fill-all color regs set that channel of every LED, as in FW_VERSION 1
+    if( curr_reg >= REG_LED_RGBR && curr_reg <= REG_LED_RGBB ) {
+      for(uint8_t n=0; n<NUM_LEDS; n++) {
+        led_regs(n)[curr_reg - REG_LED_RGBR] = c;
+      }
     }
+    curr_reg++;
   }
 }
 
